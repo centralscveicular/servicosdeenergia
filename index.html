@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>servicosdeenergia — Guia Editorial de Saneamento & Inteligência Hídrica</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Syne"', 'sans-serif'],
+          },
+          colors: {
+            obsidian: '#020617',
+            blue: {
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              950: '#172554',
+            },
+            emerald: {
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #020617; color: #94a3b8; }
+    .glass-card { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .glass-card:hover { border-color: rgba(59, 130, 246, 0.4); transform: translateY(-3px); }
+    .glass-nav { background: rgba(2, 6, 23, 0.88); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+    .gradient-hero-text { background: linear-gradient(135deg, #ffffff 0%, #60a5fa 50%, #34d399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .aqua-glow { box-shadow: 0 0 35px rgba(59, 130, 246, 0.18); }
+    .img-fallback { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-blue-500 selection:text-white">
+
+  <!-- AVISO TOPO DE TRANSPARÊNCIA INSTITUCIONAL -->
+  <div id="topDisclaimer" class="bg-slate-950 border-b border-blue-500/30 text-xs py-3 px-4 relative z-50">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 pr-6">
+      <div class="flex items-start md:items-center gap-2">
+        <span class="inline-block px-2.5 py-0.5 bg-blue-500/20 text-blue-400 border border-blue-500/40 font-bold rounded text-[10px] uppercase tracking-wider shrink-0">Aviso Institucional</span>
+        <p class="text-slate-300 leading-tight">
+          O portal <strong class="text-white">servicosdeenergia</strong> é mantido e patrocinado editorialmente pela empresa <strong class="text-white">Jkb Trade Company Jkb Comercio, Importacao e Exportacao LTDA</strong> (CNPJ: 32.083.303/0001-01). A publicação tem finalidade exclusivamente <strong class="text-blue-400">editorial, informativa e educativa</strong> sobre saneamento básico, tecnologias de filtração, saúde pública e recursos hídricos. Não emitimos cobranças, não prestamos serviços públicos de abastecimento e não temos vínculo com concessionárias governamentais.
+        </p>
+      </div>
+      <button onclick="document.getElementById('topDisclaimer').style.display='none'" class="text-slate-400 hover:text-white transition-colors text-base font-bold ml-2">✕</button>
+    </div>
+  </div>
+
+  <!-- HEADER / NAVEGAÇÃO -->
+  <header class="sticky top-0 z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- LOGOTIPO: servicosdeenergia -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-500 via-emerald-400 to-cyan-500 p-[1px] transition-transform group-hover:scale-105">
+          <div class="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
+            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+        </div>
+        <span class="font-display font-bold text-xl text-white tracking-tight">servicosde<span class="text-blue-400">energia</span></span>
+      </a>
+
+      <!-- NAV DESKTOP -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#relacao-empresa" class="hover:text-blue-400 transition-colors">Conexão Institucional</a>
+        <a href="#pilares" class="hover:text-blue-400 transition-colors">Etapas de Tratamento</a>
+        <a href="#simulador" class="hover:text-blue-400 transition-colors">Simulador de Potabilidade</a>
+        <a href="#scanner" class="hover:text-blue-400 transition-colors">Diagnóstico Residencial</a>
+        <a href="#artigos" class="hover:text-blue-400 transition-colors">Guia Editorial</a>
+        <a href="#sobre" class="hover:text-blue-400 transition-colors">Transparência CNPJ</a>
+      </nav>
+
+      <!-- BOTÃO DE LIGAÇÃO / CONTATO -->
+      <a href="tel:5430275356" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-500/20 to-emerald-500/20 border border-blue-500/40 text-blue-300 hover:border-emerald-400 font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-blue-500/10">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        Redação: (54) 3027-5356
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION CONCEITUAL -->
+  <section class="relative py-20 sm:py-28 overflow-hidden border-b border-slate-900">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/25 via-slate-950 to-slate-950"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs text-blue-400 shadow-md">
+            <span>💧 Portal de Inteligência Hídrica & Saneamento 2026</span>
+          </div>
+          <h1 class="font-display text-4xl sm:text-6xl font-extrabold leading-[1.1]">
+            A engenharia do <span class="gradient-hero-text">tratamento de água e saneamento</span> explicada.
+          </h1>
+          <p class="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
+            Seu canal informativo independente sobre coagulação, filtração por membranas, estações de tratamento (ETA e ETE), inovação global e preservação dos recursos hídricos.
+          </p>
+
+          <!-- DESTAQUE DIRETO DA RELAÇÃO COM A EMPRESA -->
+          <div class="p-4 rounded-2xl bg-blue-950/40 border border-blue-500/30 text-xs text-slate-300 space-y-1">
+            <span class="font-bold text-blue-400 uppercase tracking-wider block">Por que a Jkb Trade Company apoia este portal?</span>
+            <p class="leading-relaxed">
+              A <strong class="text-white">Jkb Trade Company Jkb Comercio, Importacao e Exportacao LTDA</strong> acompanha as tendências globais de tecnologia e suprimentos industriais. A modernização do saneamento depende diretamente do intercâmbio de membranas filtrantes, bombas dosadoras e sistemas de purificação de alta eficiência.
+            </p>
+          </div>
+          
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#pilares" class="w-full sm:w-auto text-center px-7 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-emerald-500 text-slate-950 font-bold hover:brightness-110 transition-all shadow-lg shadow-blue-500/25">
+              Explorar Processos de Tratamento
+            </a>
+            <a href="#simulador" class="w-full sm:w-auto text-center px-7 py-4 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800 border border-slate-800 transition-all">
+              Simulador de Potabilidade
+            </a>
+          </div>
+
+          <!-- MÉTRICAS HÍDRICAS -->
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-900">
+            <div>
+              <span class="block text-2xl font-bold font-display text-white">pH 6.5 - 9.5</span>
+              <span class="text-xs text-slate-500 uppercase tracking-wider">Portaria Min. Saúde</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold font-display text-blue-400">ETA / ETE</span>
+              <span class="text-xs text-slate-500 uppercase tracking-wider">Normas Técnicas</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold font-display text-emerald-400">100%</span>
+              <span class="text-xs text-slate-500 uppercase tracking-wider">Guia Informativo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="glass-card rounded-3xl p-6 relative overflow-hidden aqua-glow">
+            <!-- HERO IMAGE COM SISTEMA DE FALLBACK AUTOMÁTICO -->
+            <div class="relative h-64 sm:h-72 rounded-2xl overflow-hidden mb-6 img-fallback">
+              <img src="https://img.magnific.com/fotos-gratis/vista-aerea-de-tanques-de-decantacao-circulares-na-estacao-de-tratamento-de-esgoto-de-gold-coast_1308-189443.jpg?semt=ais_hybrid&w=740&q=80" 
+                   alt="Estação de Tratamento de Água" 
+                   onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\"w-full h-full flex items-center justify-center p-6 text-blue-400\"><svg class=\"w-24 h-24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/><circle cx=\"12\" cy=\"14\" r=\"3\"/></svg></div>';" 
+                   class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-blue-400 bg-blue-950/90 border border-blue-800 px-2.5 py-1 rounded">Infraestrutura Sanitária</span>
+                <h3 class="text-white font-bold text-lg mt-1">Estações de Tratamento de Água (ETA)</h3>
+              </div>
+            </div>
+            
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs text-slate-400 pb-2 border-b border-slate-800">
+                <span>Padrão Sanitário Recomendado:</span>
+                <span class="text-emerald-400 font-mono font-semibold">● Floculação & Cloração</span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                As estações de tratamento operam processos físico-químicos e microbiológicos contínuos para garantir que a água atinja o grau de potabilidade exigido por lei.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO EXPLÍCITA DA RELAÇÃO DA EMPRESA COM O PORTAL -->
+  <section id="relacao-empresa" class="py-20 border-b border-slate-900 bg-slate-950/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-card p-8 sm:p-12 rounded-3xl border border-blue-500/30 relative">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-8 space-y-4">
+            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider">Entenda a Conexão</span>
+            <h2 class="font-display text-3xl font-bold text-white">Por que a Jkb Trade Company mantém um portal informativo sobre Saneamento?</h2>
+            <div class="space-y-3 text-slate-300 text-sm leading-relaxed">
+              <p>
+                A <strong class="text-white">Jkb Trade Company Jkb Comercio, Importacao e Exportacao LTDA</strong> atua no segmento de comércio exterior, conectando cadeias produtivas e soluções tecnológicas internacionais ao mercado brasileiro.
+              </p>
+              <p>
+                No setor hídrico e ambiental, grande parte das tecnologias avançadas de <strong class="text-blue-400">ultrafiltração, osmose reversa, sensores de turbidez e componentes de saneamento</strong> provém de intercâmbio comercial e engenharia global.
+              </p>
+              <p>
+                Como parte de seu compromisso corporativo com o desenvolvimento sustentável e a disseminação de conhecimento técnico, a empresa mantém o portal <strong class="text-white">servicosdeenergia</strong> para informar cidadãos e gestores sobre processos de tratamento de água, potabilidade e preservação ambiental.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4 text-xs">
+            <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg">🌐</div>
+              <div>
+                <strong class="text-white block text-sm">Tecnologia Global & Água</strong>
+                <span class="text-slate-400">Inovação em Saneamento</span>
+              </div>
+            </div>
+            <ul class="space-y-2 text-slate-300">
+              <li class="flex items-center gap-2">✔ <span>Difusão de padrões internacionais de potabilidade</span></li>
+              <li class="flex items-center gap-2">✔ <span>Educação sobre filtração avançada e membranas</span></li>
+              <li class="flex items-center gap-2">✔ <span>Conscientização sobre preservação de mananciais</span></li>
+              <li class="flex items-center gap-2">✔ <span>Conteúdo 100% gratuito e educativo</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPAIS PILARES DE TRATAMENTO DE ÁGUA E ESGOTO -->
+  <section id="pilares" class="py-24 border-b border-slate-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Processos Sanitários</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Etapas Fundamentais de Tratamento e Saneamento</h2>
+        <p class="text-slate-400 text-sm mt-3">Compreenda a sequência de engenharia necessária para transformar a água bruta em água própria para o consumo humano.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Card 1 -->
+        <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-6">
+              🧪
+            </div>
+            <h3 class="text-white font-bold text-xl mb-3">Coagulação & Floculação</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Adição de coagulantes químicos (como sulfato de alumínio) para aglutinar partículas microscópicas em suspensão, formando flocos densos.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-blue-400 font-semibold">Fase Físico-Química</span>
+            <span class="text-slate-500">ETA Etapa 1</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-6">
+              🏞️
+            </div>
+            <h3 class="text-white font-bold text-xl mb-3">Decantação & Sedimentação</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Separação gravimétrica dos flocos no fundo dos tanques de decantação, reduzindo drasticamente a turbidez da água.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-emerald-400 font-semibold">Clarificação</span>
+            <span class="text-slate-500">ETA Etapa 2</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl mb-6">
+              🪨
+            </div>
+            <h3 class="text-white font-bold text-xl mb-3">Filtração Multicamadas & Carvão</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Passagem da água por camadas de areia, cascalho e carvão ativado para retenção de micropartículas e absorção de sabores e odores.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-indigo-400 font-semibold">Filtração Física</span>
+            <span class="text-slate-500">ETA Etapa 3</span>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-6">
+              ✨
+            </div>
+            <h3 class="text-white font-bold text-xl mb-3">Desinfecção, Cloração & Fluoretação</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Aplicação de cloro residual livre para eliminação de patógenos (vírus e bactérias) e adição de flúor para proteção da saúde bucal.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-cyan-400 font-semibold">Potabilização Final</span>
+            <span class="text-slate-500">ETA Etapa 4</span>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-6">
+              🌱
+            </div>
+            <h3 class="text-white font-bold text-xl mb-3">Tratamento Biológico de Esgoto (ETE)</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Uso de microrganismos benéficos em tanques de lodos ativados para degradar a matéria orgânica dos efluentes antes do descarte nos rios.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-amber-400 font-semibold">Depuração Biológica</span>
+            <span class="text-slate-500">Gestão ETE</span>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="glass-card p-8 rounded-3xl relative flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6">
+              ♻️
+            </div>
+            <h3 class="text-white font-bold text-xl mb-3">Reúso de Água & Membranas</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Processos avançados de ultrafiltração e osmose reversa para reciclagem de água e aproveitamento em processos industriais e lavagens.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <span class="text-sky-400 font-semibold">Economia Circular</span>
+            <span class="text-slate-500">Sustentabilidade</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULADOR INTERATIVO DE POTABILIDADE DA ÁGUA -->
+  <section id="simulador" class="py-24 border-b border-slate-900 bg-slate-950/40">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-card p-8 md:p-12 rounded-3xl border border-blue-500/20 relative aqua-glow">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Ferramenta Interativa</span>
+          <h2 class="font-display text-3xl font-bold text-white mt-2">Simulador de Parâmetros de Potabilidade</h2>
+          <p class="text-xs text-slate-400 mt-2">Ajuste os seletores abaixo e simule o enquadramento da água nos limites da Portaria de Potabilidade.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="space-y-5 text-sm">
+            <div>
+              <div class="flex justify-between text-xs text-slate-300 font-semibold mb-1">
+                <span>Potencial Hidrogeniônico (pH)</span>
+                <span id="phVal" class="text-blue-400 font-mono">7.2</span>
+              </div>
+              <input type="range" id="phRange" min="4" max="11" step="0.1" value="7.2" oninput="validarAgua()" class="w-full accent-blue-500 bg-slate-900 rounded-lg cursor-pointer">
+              <span class="text-[10px] text-slate-500">Faixa ideal: 6.5 a 9.5</span>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs text-slate-300 font-semibold mb-1">
+                <span>Turbidez (uNT)</span>
+                <span id="turbVal" class="text-blue-400 font-mono">1.2 uNT</span>
+              </div>
+              <input type="range" id="turbRange" min="0.1" max="10" step="0.1" value="1.2" oninput="validarAgua()" class="w-full accent-blue-500 bg-slate-900 rounded-lg cursor-pointer">
+              <span class="text-[10px] text-slate-500">Limite máximo recomendado: 5.0 uNT</span>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs text-slate-300 font-semibold mb-1">
+                <span>Cloro Residual Livre (mg/L)</span>
+                <span id="cloroVal" class="text-blue-400 font-mono">1.5 mg/L</span>
+              </div>
+              <input type="range" id="cloroRange" min="0" max="4" step="0.1" value="1.5" oninput="validarAgua()" class="w-full accent-blue-500 bg-slate-900 rounded-lg cursor-pointer">
+              <span class="text-[10px] text-slate-500">Faixa recomendada: 0.2 a 2.0 mg/L</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 text-center space-y-4">
+            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Resultado da Análise Química Simulada</span>
+            <span id="statusAgua" class="text-2xl font-extrabold font-display text-emerald-400 block">Água Própria para Consumo</span>
+            <div id="detalhesStatus" class="pt-4 border-t border-slate-800 text-xs text-slate-400 space-y-2 text-left">
+              <p>• pH: <span class="text-emerald-400 font-semibold">Dentro do Padrão</span></p>
+              <p>• Turbidez: <span class="text-emerald-400 font-semibold">Límpida & Transparente</span></p>
+              <p>• Desinfecção: <span class="text-emerald-400 font-semibold">Protegida contra Patógenos</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCANNER DE DIAGNÓSTICO DOMÉSTICO (CHECKLIST INTERATIVO) -->
+  <section id="scanner" class="py-24 border-b border-slate-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Verificação Prática</span>
+        <h2 class="font-display text-3xl font-bold text-white mt-2">Scanner de Qualidade do Reservatório Residencial</h2>
+        <p class="text-slate-400 text-sm mt-2">Marque os itens observados na sua caixa d'água para checar se é hora de realizar higienização.</p>
+      </div>
+
+      <div class="glass-card p-8 rounded-3xl space-y-4">
+        <!-- BARRA DE PROGRESSO -->
+        <div class="mb-6">
+          <div class="flex justify-between text-xs text-slate-400 mb-2">
+            <span>Nível de Risco Registrado</span>
+            <span id="progressPercent" class="text-blue-400 font-bold">0%</span>
+          </div>
+          <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
+            <div id="progressBar" class="h-full bg-gradient-to-r from-blue-500 via-emerald-400 to-rose-500 w-0 transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <!-- LISTA CHECKLIST -->
+        <label class="flex items-center gap-4 p-4 rounded-2xl bg-slate-950/60 border border-slate-800 cursor-pointer hover:border-blue-500/40 transition-all">
+          <input type="checkbox" onchange="updateProgress()" class="check-item w-5 h-5 rounded accent-blue-500">
+          <span class="text-slate-300 text-sm">Coloração amarelada, marrom ou presença de ferrugem ao abrir torneiras.</span>
+        </label>
+
+        <label class="flex items-center gap-4 p-4 rounded-2xl bg-slate-950/60 border border-slate-800 cursor-pointer hover:border-blue-500/40 transition-all">
+          <input type="checkbox" onchange="updateProgress()" class="check-item w-5 h-5 rounded accent-blue-500">
+          <span class="text-slate-300 text-sm">Odor característico de barro, mofo ou cloro excessivo percebido na água da torneira.</span>
+        </label>
+
+        <label class="flex items-center gap-4 p-4 rounded-2xl bg-slate-950/60 border border-slate-800 cursor-pointer hover:border-blue-500/40 transition-all">
+          <input type="checkbox" onchange="updateProgress()" class="check-item w-5 h-5 rounded accent-blue-500">
+          <span class="text-slate-300 text-sm">Presença de película viscosa (biofilme) ou sedimentos no fundo da caixa d'água.</span>
+        </label>
+
+        <label class="flex items-center gap-4 p-4 rounded-2xl bg-slate-950/60 border border-slate-800 cursor-pointer hover:border-blue-500/40 transition-all">
+          <input type="checkbox" onchange="updateProgress()" class="check-item w-5 h-5 rounded accent-blue-500">
+          <span class="text-slate-300 text-sm">Caixa d'água sem lavagem técnica ou desinfecção por período superior a 6 meses.</span>
+        </label>
+
+        <label class="flex items-center gap-4 p-4 rounded-2xl bg-slate-950/60 border border-slate-800 cursor-pointer hover:border-blue-500/40 transition-all">
+          <input type="checkbox" onchange="updateProgress()" class="check-item w-5 h-5 rounded accent-blue-500">
+          <span class="text-slate-300 text-sm">Acúmulo de crostas brancas de calcário nos arejadores de torneiras e chuveiros.</span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIGOS EDITORIAIS EM DESTAQUE (COM IMAGENS REAIS E FALLBACK) -->
+  <section id="artigos" class="py-24 border-b border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-end mb-16">
+        <div>
+          <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Leituras Recomendadas</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Últimas Publicações do Portal</h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- CARD ARTIGO 1 -->
+        <article class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="h-48 w-full img-fallback relative overflow-hidden">
+              <img src="https://212749.fs1.hubspotusercontent-na1.net/hubfs/212749/shutterstock_2182401039.jpg" 
+                   alt="Estação de Esgoto ETE" 
+                   onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\"w-full h-full flex items-center justify-center text-blue-400 p-4\"><svg class=\"w-16 h-16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z\"/></svg></div>';"
+                   class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider">Potabilidade</span>
+              <h3 class="text-white font-bold text-xl mt-2 mb-3">Por que Limpar a Caixa d'Água a Cada 6 Meses?</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">Entenda como se forma o biofilme bacteriano nos reservatórios residenciais e os passos para desinfecção adequada.</p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <button onclick="openModalArticle('artigo1')" class="text-blue-400 hover:text-blue-300 font-bold text-sm">Ler Artigo Completo →</button>
+          </div>
+        </article>
+
+        <!-- CARD ARTIGO 2 -->
+        <article class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="h-48 w-full img-fallback relative overflow-hidden">
+              <img src="https://www.quimiquali.com.br/doutor/uploads/6/blog/2025/07/blog-laboratorio-analise-agua-como-garantir-a-qualidade-da-agua-que-voce-consome-c645ea14b0.jpg" 
+                   alt="Análise de Água em Laboratório" 
+                   onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\"w-full h-full flex items-center justify-center text-emerald-400 p-4\"><svg class=\"w-16 h-16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\"/></svg></div>';"
+                   class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Tecnologia Hídrica</span>
+              <h3 class="text-white font-bold text-xl mt-2 mb-3">Filtros de Carvão Ativado vs. Osmose Reversa</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">Comparativo entre sistemas purificadores domésticos e retenção de metais pesados, cloro e microplásticos.</p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <button onclick="openModalArticle('artigo2')" class="text-emerald-400 hover:text-emerald-300 font-bold text-sm">Ler Artigo Completo →</button>
+          </div>
+        </article>
+
+        <!-- CARD ARTIGO 3 -->
+        <article class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="h-48 w-full img-fallback relative overflow-hidden">
+              <img src="https://img.magnific.com/fotos-gratis/vista-aerea-de-tanques-de-decantacao-circulares-na-estacao-de-tratamento-de-esgoto-de-gold-coast_1308-189443.jpg?semt=ais_hybrid&w=740&q=80" 
+                   alt="Decantação ETE" 
+                   onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\"w-full h-full flex items-center justify-center text-indigo-400 p-4\"><svg class=\"w-16 h-16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"><path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"/></svg></div>';"
+                   class="w-full h-full object-cover">
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-semibold text-indigo-400 uppercase tracking-wider">Saúde Pública</span>
+              <h3 class="text-white font-bold text-xl mt-2 mb-3">O Impacto do Tratamento de Esgoto na Saúde</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">Como a expansão do saneamento básico reduz contaminações e preserva a bacia hidrográfica das cidades.</p>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <button onclick="openModalArticle('artigo3')" class="text-indigo-400 hover:text-indigo-300 font-bold text-sm">Ler Artigo Completo →</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPARÊNCIA INSTITUCIONAL & CNPJ MANTENEDOR -->
+  <section id="sobre" class="py-24 border-b border-slate-900 bg-slate-950/30">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="glass-card p-8 md:p-12 rounded-3xl border border-blue-500/20 relative">
+        <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold uppercase tracking-wider">Transparência Cadastral</span>
+        <h2 class="font-display text-3xl font-bold text-white mt-4 mb-6">Sobre a Mantenedora do Portal</h2>
+        
+        <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+          <p>
+            A publicação e manutenção editorial do portal <strong class="text-white">servicosdeenergia</strong> são realizadas pela empresa <strong class="text-white">Jkb Trade Company Jkb Comercio, Importacao e Exportacao LTDA</strong>, inscrita no CNPJ sob o nº <strong class="text-white">32.083.303/0001-01</strong>, sediada no município de <strong class="text-white">Caxias do Sul / RS</strong>.
+          </p>
+          <p>
+            A empresa atua no ramo de comércio, importação e exportação, mantendo situação cadastral <strong class="text-emerald-400">Ativa</strong> junto à Receita Federal do Brasil.
+          </p>
+          <p class="text-slate-400 text-xs bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+            <strong>Esclarecimento Institucional:</strong> A mantenedora apoia a publicação deste portal estritamente <strong>editorial, educativo e informativo</strong> visando promover a educação sanitária, o acesso à informação sobre tecnologias globais de filtração e a preservação dos recursos hídricos. O portal não comercializa serviços públicos de saneamento e não possui vínculo governamental.
+          </p>
+        </div>
+
+        <!-- DADOS CNPJ -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-8 border-t border-slate-800 text-xs">
+          <div>
+            <span class="text-slate-500 block">Razão Social</span>
+            <strong class="text-white">Jkb Trade Company Jkb Comercio...</strong>
+          </div>
+          <div>
+            <span class="text-slate-500 block">CNPJ / Situação</span>
+            <strong class="text-white">32.083.303/0001-01 (Ativa)</strong>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Município / UF</span>
+            <strong class="text-white">Caxias do Sul / RS</strong>
+          </div>
+          <div>
+            <span class="text-slate-500 block">Natureza do Portal</span>
+            <strong class="text-blue-400">Editorial & Informativo</strong>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO & ENDEREÇO EM CAXIAS DO SUL / RS -->
+  <section id="contato" class="py-24 border-b border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Contato Institucional</span>
+        <h2 class="font-display text-3xl font-bold text-white mt-2">Canais Diretos da Redação</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- CANAIS DE CONTATO -->
+        <div class="glass-card p-8 rounded-3xl space-y-6">
+          <h3 class="text-xl font-bold text-white border-b border-slate-800 pb-3">Atendimento e E-mail</h3>
+          
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0">📧</div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-400 uppercase">E-mail Institucional</h4>
+              <p class="text-white font-medium text-base mt-1 break-all">adm@jkbtrade.com.br</p>
+              <a href="mailto:adm@jkbtrade.com.br" class="inline-block mt-1 text-xs text-blue-400 hover:underline">Enviar E-mail à Redação →</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 pt-4 border-t border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">📞</div>
+            <div>
+              <h4 class="text-xs font-bold text-slate-400 uppercase">Telefone de Contato</h4>
+              <p class="text-emerald-400 font-medium text-base mt-1">(54) 3027-5356</p>
+              <a href="tel:5430275356" class="inline-block mt-1 text-xs text-emerald-400 font-bold hover:underline">Ligar Agora →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENDEREÇO DE CORRESPONDÊNCIA -->
+        <div class="glass-card p-8 rounded-3xl space-y-6">
+          <h3 class="text-xl font-bold text-white border-b border-slate-800 pb-3">Endereço Oficial da Mantenedora</h3>
+
+          <div class="space-y-2 text-sm text-slate-300">
+            <p><strong class="text-white">Logradouro:</strong> Rua Feijo Junior, 1100</p>
+            <p><strong class="text-white">Complemento:</strong> Sala 501</p>
+            <p><strong class="text-white">Bairro:</strong> Sao Pelegrino</p>
+            <p><strong class="text-white">CEP:</strong> 95034-160</p>
+            <p><strong class="text-white">Município / Estado:</strong> Caxias do Sul – Rio Grande do Sul (RS)</p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800">
+            <span class="text-xs font-bold text-slate-400 uppercase block mb-2">Endereço Postal para Correspondência:</span>
+            <div class="bg-slate-950 p-4 rounded-xl text-xs font-mono text-slate-400 leading-relaxed border border-slate-800">
+              Jkb Trade Company Jkb Comercio, Importacao e Exportacao LTDA<br>
+              Rua Feijo Junior 1100 Sala 501 — Sao Pelegrino<br>
+              Caxias do Sul / RS — CEP 95034-160
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-12 bg-slate-950 border-t border-slate-900 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div>
+          <span class="font-display font-bold text-lg text-white">servicosde<span class="text-blue-400">energia</span></span>
+          <p class="mt-1 text-slate-500">Portal informativo sobre recursos hídricos e saneamento mantido por entidade privada.</p>
+        </div>
+        <div class="flex gap-6 text-slate-400">
+          <button onclick="openLegalModal('privacidade')" class="hover:text-blue-400 transition-colors">Política de Privacidade</button>
+          <button onclick="openLegalModal('termos')" class="hover:text-blue-400 transition-colors">Termos de Uso</button>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        <p>© 2026 servicosdeenergia — Todos os direitos reservados.</p>
+        <p class="text-[11px]">Jkb Trade Company Jkb Comercio, Importacao e Exportacao LTDA — CNPJ 32.083.303/0001-01</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL ARTIGOS -->
+  <div id="articleModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full max-h-[85vh] rounded-3xl overflow-y-auto p-8 relative text-slate-200">
+      <button onclick="closeArticleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+      <div id="articleModalContent" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- MODAL LEGAL -->
+  <div id="legalModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full max-h-[85vh] rounded-3xl overflow-y-auto p-8 relative text-slate-200">
+      <button onclick="closeLegalModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">✕</button>
+      <div id="legalModalContent" class="space-y-4 text-sm leading-relaxed"></div>
+    </div>
+  </div>
+
+  <script>
+    // SIMULADOR DE POTABILIDADE DA ÁGUA
+    function validarAgua() {
+      const ph = parseFloat(document.getElementById('phRange').value);
+      const turb = parseFloat(document.getElementById('turbRange').value);
+      const cloro = parseFloat(document.getElementById('cloroRange').value);
+
+      document.getElementById('phVal').innerText = ph.toFixed(1);
+      document.getElementById('turbVal').innerText = turb.toFixed(1) + ' uNT';
+      document.getElementById('cloroVal').innerText = cloro.toFixed(1) + ' mg/L';
+
+      const phOk = ph >= 6.5 && ph <= 9.5;
+      const turbOk = turb <= 5.0;
+      const cloroOk = cloro >= 0.2 && cloro <= 2.0;
+
+      const statusEl = document.getElementById('statusAgua');
+      const detalhesEl = document.getElementById('detalhesStatus');
+
+      if (phOk && turbOk && cloroOk) {
+        statusEl.innerText = "Água Própria para Consumo";
+        statusEl.className = "text-2xl font-extrabold font-display text-emerald-400 block";
+        detalhesEl.innerHTML = `
+          <p>• pH: <span class="text-emerald-400 font-semibold">Dentro do Padrão (${ph.toFixed(1)})</span></p>
+          <p>• Turbidez: <span class="text-emerald-400 font-semibold">Límpida & Transparente</span></p>
+          <p>• Desinfecção: <span class="text-emerald-400 font-semibold">Protegida com Cloro (${cloro.toFixed(1)} mg/L)</span></p>
+        `;
+      } else {
+        statusEl.innerText = "Água Fora do Padrão Sanitário";
+        statusEl.className = "text-2xl font-extrabold font-display text-rose-400 block";
+        detalhesEl.innerHTML = `
+          <p>• pH: <span class="${phOk ? 'text-emerald-400' : 'text-rose-400'} font-semibold">${phOk ? 'Normal' : 'Fora da Faixa de Segurança'}</span></p>
+          <p>• Turbidez: <span class="${turbOk ? 'text-emerald-400' : 'text-rose-400'} font-semibold">${turbOk ? 'Aceitável' : 'Elevada (Água Turva)'}</span></p>
+          <p>• Cloro: <span class="${cloroOk ? 'text-emerald-400' : 'text-rose-400'} font-semibold">${cloroOk ? 'Adequado' : 'Dosagem Inadequada'}</span></p>
+        `;
+      }
+    }
+
+    // CHECKLIST BARRA DE PROGRESSO DE DIAGNÓSTICO
+    function updateProgress() {
+      const checkboxes = document.querySelectorAll('.check-item');
+      let checked = 0;
+      checkboxes.forEach(cb => { if(cb.checked) checked++; });
+      const percent = Math.round((checked / checkboxes.length) * 100);
+      document.getElementById('progressBar').style.width = percent + '%';
+      document.getElementById('progressPercent').innerText = percent + '%';
+    }
+
+    // DADOS DOS ARTIGOS
+    const articlesData = {
+      artigo1: {
+        title: "Por que Limpar a Caixa d'Água a Cada 6 Meses?",
+        content: `
+          <h3 class="text-xl font-bold text-white mb-2">Ação do Biofilme Bacteriano no Reservatório</h3>
+          <p class="mb-3">Mesmo tratada na estação concessionária, a água parada em reservatórios residenciais expostos ou mal vedados acumula pequenas partículas de poeira e microrganismos ao longo dos meses.</p>
+          <p class="mb-3">Essa matéria orgânica cria uma película viscosa conhecida como biofilme nas paredes da caixa d'água, exigindo esgotamento parcial, esfregamento com escova macia e desinfecção com solução de hipoclorito de sódio.</p>
+        `
+      },
+      artigo2: {
+        title: "Filtros de Carvão Ativado vs. Osmose Reversa",
+        content: `
+          <h3 class="text-xl font-bold text-white mb-2">Escolhendo o Purificador Correto</h3>
+          <p class="mb-3">Os elementos filtrantes de carvão ativado absorvem quimicamente o cloro residual livre, neutralizam gosto e eliminam compostos orgânicos voláteis (VOCs).</p>
+          <p class="mb-3">Por outro lado, a osmose reversa utiliza membranas semipermeáveis de escala microscópica capazes de reter até 99% dos sais dissolvidos, metais pesados e microplásticos, sendo indicada para águas com alta dureza.</p>
+        `
+      },
+      artigo3: {
+        title: "O Impacto do Tratamento de Esgoto na Saúde Pública",
+        content: `
+          <h3 class="text-xl font-bold text-white mb-2">Preservação Ambiental e Saúde das Cidades</h3>
+          <p class="mb-3">O descarte de esgoto in natura em rios e córregos é o principal vetor de propagação de parasitoses, hepatite A, febre tifóide e gastroenterites.</p>
+          <p class="mb-3">A expansão das Estações de Tratamento de Esgoto (ETEs) reduz significativamente o custo público em saúde preventiva, protege a fauna aquática e reabilita mananciais urbanos.</p>
+        `
+      }
+    };
+
+    function openModalArticle(id) {
+      const art = articlesData[id];
+      if (!art) return;
+      document.getElementById('articleModalContent').innerHTML = `
+        <h2 class="text-2xl font-bold text-white mb-4">${art.title}</h2>
+        <div>${art.content}</div>
+      `;
+      document.getElementById('articleModal').classList.remove('hidden');
+    }
+
+    function closeArticleModal() {
+      document.getElementById('articleModal').classList.add('hidden');
+    }
+
+    function openLegalModal(type) {
+      let html = '';
+      if (type === 'privacidade') {
+        html = `
+          <h2 class="text-xl font-bold text-white mb-4">Política de Privacidade</h2>
+          <p class="mb-2">O portal <strong>servicosdeenergia</strong> é mantido pela empresa <strong>Jkb Trade Company Jkb Comercio, Importacao e Exportacao LTDA</strong> (CNPJ 32.083.303/0001-01).</p>
+          <p class="mb-2">Este site tem caráter estritamente educativo e informativo. Não coletamos dados bancários nem exigimos cadastro de senhas dos leitores.</p>
+        `;
+      } else {
+        html = `
+          <h2 class="text-xl font-bold text-white mb-4">Termos de Uso</h2>
+          <p class="mb-2">O acesso ao portal <strong>servicosdeenergia</strong> implica no aceite dos presentes termos.</p>
+          <p class="mb-2">Todo o conteúdo disponibilizado busca informar a população sobre saneamento básico e parâmetros de qualidade da água, sem valor legal de laudo laboratorial.</p>
+        `;
+      }
+      document.getElementById('legalModalContent').innerHTML = html;
+      document.getElementById('legalModal').classList.remove('hidden');
+    }
+
+    function closeLegalModal() {
+      document.getElementById('legalModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
